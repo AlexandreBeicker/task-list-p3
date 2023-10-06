@@ -86,8 +86,8 @@ const App = () => {
         </C.Content>
       </C.Area>
 
-      <div style={{ height: '50px', display: 'flex', justifyContent: 'center' }}>
-        <img src="./Images/portao3.jpg" alt="Descrição da imagem" />
+      <div>
+        <a  style={{ height: '50px', display: 'flex', justifyContent: 'center' }} href='https://www.portao3.com.br'><img src="./Images/portao3.jpg" alt="Descrição da imagem" /> </a>
       </div>
     </C.Container>
   );
