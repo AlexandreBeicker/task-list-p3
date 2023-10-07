@@ -26,5 +26,10 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "allowJs": true,
+  "baseUrl": "./src",
+  "paths": {
+    "*": ["types/*", "*"]
+  }
 }

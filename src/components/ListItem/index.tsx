@@ -2,6 +2,7 @@ import React from 'react';
 import * as C from './styles';
 import { Item } from '../../types/Item';
 
+
 type Props = {
   item: Item;
   onTaskChange: (id: number, done: boolean) => void;

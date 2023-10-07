@@ -3,12 +3,15 @@ import * as C from './App.styles';
 import { Item } from './types/Item';
 import { ListItem } from './components/ListItem';
 import { AddArea } from './components/AddArea';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from './firebase'; // Seu arquivo firebase.js com a instância do Firestore
+
 
 const App = () => {
   const [list, setList] = useState<Item[]>([]);
   const [completedList, setCompletedList] = useState<Item[]>([]);
 
-  const handleAddTask = (taskName: string) => {
+  const handleAddTask = async (taskName: string) => {
     const newTask: Item = {
       id: list.length + 1,
       name: taskName,
@@ -16,8 +19,16 @@ const App = () => {
       category: 'to-do',
       priority: list.length + 1,
     };
-    setList((prevList) => [...prevList, newTask]);
+  
+    try {
+      const docRef = await addDoc(collection(db, 'tasks'), newTask);
+      console.log('Tarefa adicionada ao Firestore com ID:', docRef.id);
+      setList((prevList) => [...prevList, newTask]);
+    } catch (e) {
+      console.error('Erro ao adicionar a tarefa ao Firestore:', e);
+    }
   };
+  
 
   const handleTaskChange = (id: number, done: boolean) => {
     setList((prevList) => {
